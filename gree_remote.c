@@ -73,7 +73,6 @@ typedef enum {
     ItemSleep,
     ItemLight,
     ItemEcono,
-    ItemSend,
 } GreeItem;
 
 typedef struct {
@@ -228,12 +227,11 @@ static void econo_changed(VariableItem* item) {
     variable_item_set_current_value_text(item, i ? "On" : "Off");
 }
 
-// OK pressed on a remote row
+// OK on ANY row fires the IR signal (values are edited with left/right, so OK is free)
 static void remote_enter_callback(void* context, uint32_t index) {
+    UNUSED(index);
     GreeApp* app = context;
-    if(index == ItemSend) {
-        gree_transmit(app);
-    }
+    gree_transmit(app);
 }
 
 // Brand picked -> go to remote
@@ -292,9 +290,7 @@ static void build_remote_view(GreeApp* app) {
     add_toggle(app, "Light", app->state.light, light_changed);
     add_toggle(app, "Econo", app->state.econo, econo_changed);
 
-    // Action row (no value) - sends on OK
-    variable_item_list_add(app->var_list, ">> SEND <<", 0, NULL, NULL);
-
+    // OK on any row sends the signal
     variable_item_list_set_enter_callback(app->var_list, remote_enter_callback, app);
 }
 
