@@ -1,0 +1,12 @@
+App(
+    appid="gree_remote",
+    name="Gree Fan Remote",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="gree_remote_app",
+    requires=["gui", "notification"],
+    stack_size=4 * 1024,
+    fap_category="Infrared",
+    fap_author="W-guy",
+    fap_version="1.0",
+    fap_description="Stateful Gree AC/fan IR remote - set fields, send whole state at once",
+)
