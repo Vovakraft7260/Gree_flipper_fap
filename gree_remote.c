@@ -26,7 +26,7 @@
 #include <gui/modules/variable_item_list.h>
 #include <notification/notification.h>
 #include <notification/notification_messages.h>
-#include <infrared.h>
+#include <infrared_transmit.h>
 #include <string.h>
 
 // ---- Gree IR timing constants (microseconds) ----
